@@ -1,0 +1,25 @@
+{
+  "name": "selfprojects_scrap-results",
+  "version": "1.0.0",
+  "description": "Scrap Football Results",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+	"start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AustinOsti/SelfProjects_Scrap-Results.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AustinOsti/SelfProjects_Scrap-Results/issues"
+  },
+  "homepage": "https://github.com/AustinOsti/SelfProjects_Scrap-Results#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cheerio": "^1.0.0-rc.2"
+  }
+}
