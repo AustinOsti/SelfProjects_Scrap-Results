@@ -33,26 +33,31 @@ let getData = function(html, d){
 		const $ = cheerio.load(html);
 		$('table.soccer tr')
 		.each(function(i, elem){
-			const results = $(elem).children("td:nth-child(6)").text();		
-			if (results.length === 0) {
+			let results = $(elem).children("td:nth-child(6)").text();
+			if (results.length === 0) {	
 				league = {
 					a: $(elem).children("td:nth-child(2)").text()
-				}			
+				}
 				Object.freeze(league);
-			}	
-			if (results.length > 0) {
-				data.push({
-					date: new Date(d),
-					time: $(elem).children("td:nth-child(2)").text(),
-					status: $(elem).children("td:nth-child(3)").text(),
-					league: league.a.replace("Standings", ""),
-					home: $(elem).children("td:nth-child(4)").text(),
-					away: $(elem).children("td:nth-child(5)").text(),
-					results: $(elem).children("td:nth-child(6)").text(),
-					odds_1:	$(elem).children("td:nth-child(8)").text(),
-					odds_X: $(elem).children("td:nth-child(9)").text(),
-					odds_2: $(elem).children("td:nth-child(10)").text()
-				});			
+			}
+			results = results.replace(/\s+/g, '').trim();
+			status = $(elem).children("td:nth-child(3)").text().trim();
+			odds_1 = $(elem).children("td:nth-child(8)").text().trim()
+			if (results.length > 0 && odds_1 != "-") {
+				if (status != "Postp" || status != "Canc") {
+					data.push({
+						date: new Date(d),
+						time: $(elem).children("td:nth-child(2)").text().trim(),
+						status: status,
+						league: league.a.replace(/Standings|Draw|Live/g, "").trim(),
+						home: $(elem).children("td:nth-child(4)").text().trim(),
+						away: $(elem).children("td:nth-child(5)").text().trim(),
+						results: results,
+						odds_1:	odds_1,
+						odds_X: $(elem).children("td:nth-child(9)").text(),
+						odds_2: $(elem).children("td:nth-child(10)").text()
+					});					
+				}
 			}	
 		});
 		file.write(JSON.stringify(data));
@@ -67,7 +72,7 @@ let deleteDataFile = function(fileToDelete) {
 		fs.unlink(fileToDelete, function (err) {
 			if (err) throw err;
 			// if no error, file has been deleted successfully
-			console.log('File deleted!');
+			console.log('Sample file deleted & process complete!');
 		});	
 		resolve();
 	});

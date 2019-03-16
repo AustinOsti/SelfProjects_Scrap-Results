@@ -6,13 +6,11 @@ Scrap Football Results
 ### Generating the Raw Data
 1. Navigate to the url https://www.soccer24.com
 2. Select a date prior to today from the date picker to retrieve the results of games for the day.
-3. Note. The website only features results for the past seven days.
+3a. Note. Ensure that all leagues are expanded (i.e. not collapsed).
+3b. Note. The website only features results for the past seven days.
 4. Right-click on mouse and select Save as to to save the web page in the stored_web_pages folder.
-5. Select the saved web page and open it in a new page.
-6. Right click on mouse and select View page source
-7. Select all the content on the page source displayed in the new page.
-8. Paste the content in Notepad++ and save the file as sample.html in the project folder.
-9. At the command prompt: npm run results.
+5. Select the saved web page and open it in a new page and save the file as sample.html in the project folder.
+6. At the command prompt: npm run results.
 
 ### Convert JSON to HTML
 1. Navigate to the url http://convertjson.com/json-to-html-table.htm
